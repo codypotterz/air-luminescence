@@ -1,0 +1,21 @@
+
+                            OpNoviceBeam
+                            ------------
+                            
+
+This application demonstrates the generation of optical photons (scintillation photons) from the interaction
+of accelerated alpha particles with air at NTP conditions. It computes the track length of alpha particles, 
+the deposited energy per alpha particle in air, as well as the spectrum of radioluminescence photons that are 
+emitted along the track of the alphas. Also, the distribution of radioluminescence photons that pass through
+a surface of (50x10)mm is simulated by activating the FlatSurfaceCurrent primitive scorer in the alphabeam.mac
+file.
+
+
+Detector geometry : 50 m side cube of Air  -> World Volume - centered at (0,0,0)
+		    30 cm side cube of Air -> Absorber Volume (used for computing the track length and 						     deposited energy) / the half-length of its side should always
+		    			     be higher than the track length of an alpha particle in air
+		    			     at a certain energy. - centered at (0,0,0)
+		    			     
+		 +   the beam source is centered at (0,0,0) and is described in the alphabeam.mac file
+
+

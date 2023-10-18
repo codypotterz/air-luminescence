@@ -1,0 +1,54 @@
+
+###################################################
+/control/verbose 2
+/tracking/verbose 1
+/run/verbose 1
+/process/optical/verbose 1
+/control/cout/ignoreThreadsExcept 0
+
+/process/optical/scintillation/setEnhancedTimeConstants true
+/process/optical/scintillation/setFiniteRiseTime true
+/process/optical/scintillation/setYieldFactor 1.0
+/process/optical/scintillation/setExcitationRatio 1.0
+
+/process/em/fluo true
+/process/em/augerCascade true
+/process/em/deexcitationIgnoreCut true
+
+/run/initialize
+
+################################################### PARTICLE SOURCE
+# alpha particle beam 
+# default intensity 1 can be changed
+
+/gps/source/intensity 1.
+/gps/particle alpha
+# the incident surface is the Y-Z plane
+/gps/pos/rot1 0 1 0
+/gps/pos/rot2 0 0 1
+
+# the beam spot is centered at the origin and 
+# is of 1d gaussian shape with a 100 microns diameter plateau with a dispersion of 5 microns
+/gps/pos/type Beam
+/gps/pos/shape Circle
+/gps/pos/radius 0.05 mm
+/gps/pos/sigma_r 0.005 mm
+/gps/pos/centre 0.0 0.0 0.0 mm
+
+# the beam is travelling along the Z axis with 5 degrees dispersion
+/gps/ang/rot1 0 -1 0
+/gps/ang/rot2 0 0 -1
+/gps/ang/type beam1d
+/gps/ang/sigma_r 5. deg
+
+#the beam energy is in gaussian profile centered at 5.5 MeV
+/gps/ene/type Gauss
+/gps/ene/mono 6.9 MeV
+/gps/ene/sigma 0.1 MeV
+
+# printing the Histograms in an .ascii file named "OpN.ascii")
+#/analysis/h1/setAscii 0
+#/analysis/h1/setAscii 1
+#/analysis/h1/setAscii 3
+/run/beamOn 10
+
