@@ -1,0 +1,59 @@
+# defining a scoring mesh
+/score/create/boxMesh scoring_mesh
+/score/mesh/boxSize 6. 9. 2. cm
+/score/mesh/nBin 120 180 40
+/score/mesh/translate/xyz 0. 0. -4. cm
+/score/quantity/flatSurfaceCurrent n_opticalPhotons
+/score/filter/particle opticalPhotonFilter opticalphoton
+/score/close
+/score/list
+
+#/vis/disable
+#/tracking/storeTrajectory 0
+
+/control/verbose 2
+/tracking/verbose 1
+/run/verbose 1
+/process/optical/verbose 1
+/control/cout/ignoreThreadsExcept 0
+
+/process/em/fluo true
+/process/em/augerCascade true
+/process/em/deexcitationIgnoreCut true
+
+/run/initialize
+
+/gps/particle ion
+/gps/ion 95 241 0 0
+/process/had/rdm/nucleusLimits 241 241 95 95
+
+
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/centre 0.0 0.0 0.0 mm
+/gps/pos/rot1 1 0 0
+/gps/pos/rot2 0 1 0
+/gps/pos/halfx 10.0 mm
+/gps/pos/halfy 50.0 mm
+/gps/pos/halfz 0.0005 mm
+/gps/ang/type iso
+
+#/analysis/h1/setAscii 0
+#/analysis/h1/setAscii 1
+/analysis/h1/setAscii 3
+/run/beamOn 100
+
+#/vis/enable
+#/tracking/storeTrajectory 2
+#/vis/viewer/rebuild
+#/vis/scene/add/axes 0 0 0 3 cm
+
+#drawing projections
+
+#/score/drawProjection scoring_mesh n_opticalPhotons 
+#/vis/open OGL
+#/vis/drawVolume
+#/vis/viewer/copyViewFrom viewer-0
+
+/score/dumpQuantityToFile scoring_mesh n_opticalPhotons RadioluminescenceDistribution.txt
+
